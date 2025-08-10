@@ -1,0 +1,13 @@
+//
+// Created by Giuse on 10/08/2025.
+//
+
+#ifndef MDTOLATEXPARSER_LATEXOUTPUT_H
+#define MDTOLATEXPARSER_LATEXOUTPUT_H
+
+
+class LatexOutput {
+};
+
+
+#endif //MDTOLATEXPARSER_LATEXOUTPUT_H

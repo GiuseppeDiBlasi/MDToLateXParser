@@ -3,10 +3,14 @@
 //
 
 #include <iostream>
+#include <memory>
 #include <ostream>
 
 #include "library.h"
-#include "TextParsing/LatexTagConstants.h"
+#include "TextParsing/TextTokenizer.h"
+#include "TextParsing/Tokens/PlainTextToken.h"
+#include "TextParsing/Tokens/Token.h"
+
 
 int main() {
     std::vector<std::string> buffer {};
@@ -17,7 +21,15 @@ int main() {
         std::cout << e.what() << std::endl;
     }
 
-    printBuffer(buffer);
+    //printBuffer(buffer);
 
-    std::cout << BOLD_TEXT_TAG << std::endl;
+    TextTokenizer txtTokenizer(buffer);
+
+    std::vector<std::unique_ptr<Token>> tokens = txtTokenizer.generateTokens();
+
+    for (const auto& token : tokens) {
+        std::cout << token->getLatexContent() << std::endl;
+    }
+
+    //std::cout << BOLD_TEXT_TAG << std::endl;
 }

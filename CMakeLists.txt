@@ -3,24 +3,61 @@ project(MDToLateXParser)
 
 set(CMAKE_CXX_STANDARD 17)
 
-#library
-add_library(MDToLateXParser SHARED library.cpp
-        exceptionConstants.h
-        TextParsing/TextTokenizer.cpp
-        TextParsing/TextTokenizer.h
-        TextParsing/Tokens/Token.cpp
-        TextParsing/Tokens/Token.h
-        TextParsing/Tokens/PlainTextToken.cpp
-        TextParsing/Tokens/PlainTextToken.h
-        TextParsing/LatexOutput.cpp
+#####
+### Header files under TextParsing/ directory
+#####
+set(DIR_TEXT_PARSING_HEADERS
+        TextParsing/MDTagConstants.h
+        TextParsing/TextFunctions.h
         TextParsing/LatexOutput.h
-        TextParsing/Tokens/TokenCharsConstants.h
-        TextParsing/Tokens/BoldTextToken.cpp
-        TextParsing/Tokens/BoldTextToken.h
-        TextParsing/LatexTagConstants.h)
+        TextParsing/LatexTagConstants.h
+        TextParsing/TextTokenizerCursor.h
+)
 
-#test exe
+#####
+### Header files under TextParsing/Tokens directory
+#####
+
+set(DIR_TEXT_PARSING_TOKENS_HEADERS
+        TextParsing/Tokens/BoldTextToken.h
+        TextParsing/Tokens/TokenCharsConstants.h
+        TextParsing/Tokens/PlainTextToken.h
+        TextParsing/Tokens/Token.h
+)
+
+#####
+### CPP files under TextParsing/ directory
+#####
+set(DIR_TEXT_PARSING_CPP
+        TextParsing/TextTokenizer.cpp
+        TextParsing/LatexOutput.cpp
+        TextParsing/TextTokenizerCursor.cpp
+)
+
+#####
+### CPP files under TextParsing/Tokens directory
+#####
+
+set(DIR_TEXT_PARSING_TOKENS_CPP
+        TextParsing/Tokens/BoldTextToken.cpp
+        TextParsing/Tokens/PlainTextToken.cpp
+        TextParsing/Tokens/Token.cpp
+)
+
+add_library(MDToLateXParser SHARED
+        ${DIR_TEXT_PARSING_HEADERS}
+        ${DIR_TEXT_PARSING_TOKENS_HEADERS}
+        ${DIR_TEXT_PARSING_CPP}
+        ${DIR_TEXT_PARSING_TOKENS_CPP}
+        library.cpp
+
+)
+target_include_directories(MDToLateXParser
+        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+        PRIVATE TextParsing
+        PRIVATE TextParsing/Tokens
+)
+
 add_executable(parser_test main.cpp)
 
-#link exe to library
 target_link_libraries(parser_test PRIVATE MDToLateXParser)

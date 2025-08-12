@@ -6,6 +6,9 @@
 #define MDTOLATEXPARSER_LATEXTAGCONSTANTS_H
 #include <string>
 
-const std::string BOLD_TEXT_TAG = "\\textbf";
+namespace lxtTags {
+    const std::string BOLD_TEXT_TAG = "\\textbf";
+}
+
 
 #endif //MDTOLATEXPARSER_LATEXTAGCONSTANTS_H

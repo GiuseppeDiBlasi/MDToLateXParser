@@ -16,7 +16,7 @@ void loadBufferFromFile(std::vector<std::string>& buffer, const std::string& fil
     if (file.is_open()) {
         std::string line;
         while (std::getline(file, line))
-            buffer.push_back(line);
+            buffer.push_back(line += '\n');
     }
 }
 

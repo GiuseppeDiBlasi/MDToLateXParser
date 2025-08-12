@@ -4,17 +4,16 @@
 
 #ifndef MDTOLATEXPARSER_PLAINTEXTTOKEN_H
 #define MDTOLATEXPARSER_PLAINTEXTTOKEN_H
+
 #include "Token.h"
 
 
-class PlainTextToken final : Token{
-    public:
+class PlainTextToken final : public Token {
+public:
+    PlainTextToken() : Token() {}
+    explicit PlainTextToken(const std::string& s) : Token(s) {}
 
-    PlainTextToken() = default;
-    ~PlainTextToken() override = default;
-
-    std::string getLatexContent() override;
-
+    std::string getLatexContent() const override;
 };
 
 

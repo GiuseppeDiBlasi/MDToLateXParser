@@ -4,22 +4,20 @@
 
 #ifndef MDTOLATEXPARSER_TOKEN_H
 #define MDTOLATEXPARSER_TOKEN_H
-#include <string>
 
+#include <string>
+#include <utility>
 
 class Token {
     public:
     Token() = default;
 
+    explicit Token(std::string  s) : content(std::move(s)) {}
+
     virtual ~Token() = default;
 
-    virtual std::string getLatexContent() = 0;
-
-    enum TokenType {
-        TYPE_PLAIN_TEXT,
-        TYPE_HEADER,
-        TYPE_BOLD_TEXT,
-        TYPE_BULLETED_LIST
+    virtual std::string getLatexContent() const{
+        return content;
     };
 
 protected:

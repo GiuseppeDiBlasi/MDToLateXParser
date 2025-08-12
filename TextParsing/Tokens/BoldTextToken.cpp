@@ -4,6 +4,4 @@
 
 #include "BoldTextToken.h"
 
-BoldTextToken::BoldTextToken(const std::string &txt) {
 
-}

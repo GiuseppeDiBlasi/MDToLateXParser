@@ -4,6 +4,6 @@
 
 #include "PlainTextToken.h"
 
-std::string PlainTextToken::getLatexContent() {
+ std::string PlainTextToken::getLatexContent() const{
     return content;
 }
